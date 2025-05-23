@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Multi Cloner Application</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            color: #2d3436;
+            background-color: #f9f9f9;
+        }
+        .policy-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #0984e3;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        h2 {
+            color: #00cec9;
+            margin-top: 35px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #dfe6e9;
+            font-weight: 500;
+        }
+        .highlight {
+            background-color: #fffde7;
+            padding: 15px;
+            border-left: 4px solid #ffeaa7;
+            margin: 20px 0;
+        }
+        .update-date {
+            text-align: right;
+            font-style: italic;
+            color: #636e72;
+            margin-top: 40px;
+        }
+        a {
+            color: #0984e3;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="policy-container">
+        <h1>Privacy Policy</h1>
+        
+        <div class="highlight">
+            <p>Last updated: <strong>May 24, 2025</strong></p>
+            <p>Multi Cloner ("we", "our", or "us") respects your privacy and is committed to protecting your personal data.</p>
+        </div>
+
+        <h2>1. Introduction</h2>
+        <p>This privacy policy explains how Multi Cloner handles information when you use our application services. By accessing or using Multi Cloner, you acknowledge you have read and understood this policy.</p>
+
+        <h2>2. Data Handling Principles</h2>
+        <p>We adhere to the following core principles regarding your data:</p>
+        <ul>
+            <li>We minimize data collection to only what's necessary for app functionality</li>
+            <li>All sensitive data remains on your device unless explicitly stated otherwise</li>
+            <li>We never sell your personal information to third parties</li>
+            <li>Transparency about what data we access and why</li>
+        </ul>
+
+        <h2>3. Information We Access</h2>
+        <p>To enable core features, Multi Cloner may require access to:</p>
+        <ul>
+            <li><strong>Device identifiers</strong>: For license verification and security</li>
+            <li><strong>Installed applications</strong>: Required for the cloning functionality</li>
+            <li><strong>Storage</strong>: To manage cloned application data</li>
+            <li><strong>Network information</strong>: For connectivity verification</li>
+        </ul>
+        <p>This information is processed locally on your device and not transmitted to our servers.</p>
+
+        <h2>4. Third-Party Services</h2>
+        <p>Multi Cloner integrates with these external services:</p>
+        <ul>
+            <li><a href="https://policies.google.com/privacy" target="_blank">Google Play Services</a> (for app distribution and updates)</li>
+            <li>Analytics services (for crash reporting and usage statistics)</li>
+        </ul>
+        <p>Each service operates under its own privacy policy which we recommend reviewing.</p>
+
+        <h2>5. Data Security</h2>
+        <p>We implement appropriate technical measures to protect your information:</p>
+        <ul>
+            <li>Local data encryption for sensitive information</li>
+            <li>Regular security audits of our codebase</li>
+            <li>Limited data retention periods</li>
+        </ul>
+        <p>While we take reasonable precautions, no digital system can be 100% secure.</p>
+
+        <h2>6. Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+            <li>Request information about data processing</li>
+            <li>Withdraw consent for data collection</li>
+            <li>Delete locally stored data via app settings</li>
+            <li>Lodge complaints with regulatory authorities</li>
+        </ul>
+
+        <h2>7. Children's Privacy</h2>
+        <p>Multi Cloner is not designed for users under 13. We don't knowingly collect data from children. If we become aware of such collection, we will take steps to delete the information promptly.</p>
+
+        <h2>8. Policy Changes</h2>
+        <p>We may update this policy periodically. Significant changes will be communicated through:</p>
+        <ul>
+            <li>In-app notifications</li>
+            <li>Email alerts (for registered users)</li>
+            <li>Updated version on our website</li>
+        </ul>
+
+        <h2>9. Contact Information</h2>
+        <p>For privacy-related inquiries, please contact:</p>
+        <p><strong>Data Protection Officer</strong><br>
+        Email: <a href="mailto:privacy@multicloner.app">multiclonerdev@gmail.com</a><br>
+        Response time: Within 7 business days</p>
+
+        <div class="update-date">
+            <p>This policy is effective as of May 24, 2025</p>
+        </div>
+    </div>
+</body>
+</html>
