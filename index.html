@@ -1,1 +1,636 @@
-Multi Cloner
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Cloner - 智能多开，自由掌控每一个账号</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(52, 120, 246, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #3478f6;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo::before {
+            content: "";
+            margin-right: 8px;
+            font-size: 30px;
+			      background-image: url('icon.png');
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3478f6;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #3478f6, #5b9df8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 120, 246, 0.3);
+        }
+
+        /* 英雄区域 */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="90" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3478f6, #5b9df8);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 120, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(52, 120, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            margin-top: 60px;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 功能模块 */
+        .features {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #64748b;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(52, 120, 246, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(52, 120, 246, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3478f6, #5b9df8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a202c;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* 应用场景 */
+        .scenarios {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .scenarios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .scenario-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .scenario-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .scenario-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .scenario-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .scenario-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .scenario-card p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* 下载区域 */
+        .download {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #3478f6, #5b9df8);
+            color: white;
+            text-align: center;
+        }
+
+        .download h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .download p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .download-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #1a202c;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #3478f6;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #a0aec0;
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #3478f6;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            padding-top: 30px;
+            text-align: center;
+            color: #a0aec0;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
+            }
+            
+            .hero-desc {
+                font-size: 16px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .scenarios-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .download h2 {
+                font-size: 32px;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero {
+                padding: 100px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .features, .scenarios, .download {
+                padding: 60px 0;
+            }
+            
+            .feature-card, .scenario-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">Multi Cloner</div>
+                <ul class="nav-links">
+                    <li><a href="#features">功能特色</a></li>
+                    <li><a href="#scenarios">应用场景</a></li>
+                    <li><a href="#download">立即下载</a></li>
+                </ul>
+                <a href="https://play.google.com/store/apps/details?id=com.multiaccounts.cloneapps" class="nav-btn">免费下载</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Multi Cloner</h1>
+                <div class="hero-subtitle">智能多开，自由掌控每一个账号</div>
+                <p class="hero-desc">轻松管理多个应用账号，无需切换，一键启动更高效。让你的数字生活更加便捷有序。</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">立即下载</a>
+                    <a href="#" class="btn-secondary">了解更多</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://via.placeholder.com/800x450/3478f6/ffffff?text=Multi Cloner预览图" alt="Multi Cloner预览图">
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能模块 -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">强大功能特色</h2>
+            <p class="section-subtitle">为您提供全方位的多账号管理解决方案，让每一个账号都能独立运行</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>多账号并行运行</h3>
+                    <p>同时运行多个应用账号，无需频繁切换，提升工作效率，让你的多账号管理变得轻松简单。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>独立数据存储</h3>
+                    <p>每个账号拥有独立的数据空间，确保信息安全隔离，避免数据混乱和隐私泄露问题。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>无需Root</h3>
+                    <p>无需root权限即可使用，安全可靠，兼容性强，支持大部分Android设备和应用。</p>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用场景 -->
+    <section class="scenarios" id="scenarios">
+        <div class="container">
+            <h2 class="section-title">适用场景</h2>
+            <p class="section-subtitle">无论是工作还是生活，Multi Cloner都能为你提供完美的多账号管理体验</p>
+            
+            <div class="scenarios-grid">
+                <div class="scenario-card">
+                    <div class="scenario-content">
+                        <div class="scenario-icon">👥</div>
+                        <h3>社交运营</h3>
+                        <p>管理多个社交媒体账号，提升运营效率，轻松处理不同平台的内容发布和粉丝互动。</p>
+                    </div>
+                </div>
+                
+                <div class="scenario-card">
+                    <div class="scenario-content">
+                        <div class="scenario-icon">🎮</div>
+                        <h3>游戏多开</h3>
+                        <p>同时运行多个游戏账号，享受更丰富的游戏体验，提升游戏进度和收益。</p>
+                    </div>
+                </div>
+                
+                <div class="scenario-card">
+                    <div class="scenario-content">
+                        <div class="scenario-icon">💼</div>
+                        <h3>商务办公</h3>
+                        <p>分离工作和个人账号，提升工作效率，保护隐私，让生活和工作更加有序。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+	<!-- 下载区域 -->
+	<section class="download" id="download">
+		<div class="container">
+			<h2>立即下载体验</h2>
+			<p>免费下载Multi Cloner，开启高效的多账号管理新体验</p>
+			
+			<div class="download-buttons">
+				<a href="https://play.google.com/store/apps/details?id=com.multiaccounts.cloneapps" class="download-btn" target="_blank" rel="noopener noreferrer">
+					<span>📱</span>
+					Google Play下载
+				</a>
+			</div>
+		</div>
+	</section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Multi Cloner</h3>
+                    <p>智能多开，自由掌控每一个账号。让你的数字生活更加便捷有序。</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>产品功能</h3>
+                    <a href="#">多账号并行</a>
+                    <a href="#">独立存储</a>
+                    <a href="#">标签分组</a>
+                    <a href="#">性能优化</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>支持中心</h3>
+                    <a href="#">使用教程</a>
+                    <a href="#">常见问题</a>
+                    <a href="#">意见反馈</a>
+                    <a href="#">联系我们</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <a href="#">公司介绍</a>
+                    <a href="#">隐私政策</a>
+                    <a href="#">服务条款</a>
+                    <a href="#">加入我们</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Multi Cloner. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
