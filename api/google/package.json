@@ -3,7 +3,7 @@
     "data":{
         "type":"1",
         "schema":"com.multiaccounts.cloneapps",
-        "minVerCode":1002,
+        "minVerCode":1,
         "content":"crach version 1001"
     }
 }
