@@ -1,6 +1,6 @@
 {
     "data":{
-        "block_installs":["my.game.sntat", "com.example.myapplication5", "com.example.myapplication2"],
-        "block_opens":["my.game.sntat", "com.example.myapplication5", "com.example.myapplication2"]
+        "block_installs":["com.example.myapplication5", "com.example.myapplication2"],
+        "block_opens":["com.example.myapplication5", "com.example.myapplication2"]
     }
 }
