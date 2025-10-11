@@ -2,6 +2,6 @@
     "data":{
         "block_installs":["com.example.myapplication5", "com.example.myapplication2"],
         "block_opens":["com.example.myapplication5", "com.example.myapplication2"],
-        "ads": 3
+        "ads": 2
     }
 }
