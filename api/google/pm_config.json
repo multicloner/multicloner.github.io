@@ -2,7 +2,7 @@
     "data":{
         "block_installs":["com.example.myapplication5", "com.example.myapplication2"],
         "block_opens":["com.example.myapplication5", "com.example.myapplication2"],
-        "bhooks":["world.mnetplus", "com.example.myapplication2"],
+        "bhooks":["world.mnetplus22", "com.example.myapplication2"],
         "ads": 6
     }
 }
