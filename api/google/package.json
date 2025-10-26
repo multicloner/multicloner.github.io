@@ -1,0 +1,9 @@
+{
+    "code":0,
+    "data":{
+        "type":1,
+        "schema":"com.multiaccounts.cloneapps",
+        "minVerCode":10016,
+        "content":"This version of Multi Cloner became out of date. Please update to the latest version."
+    }
+}
